@@ -1,6 +1,6 @@
 {
   "version": "1.0.0",
-  "name": "@cn-shell/aws-utils",
+  "name": "@cn-shell/basic-stats",
   "description": "A Cloud Native Shell extension for basic stats",
   "main": "./dist/main.js",
   "bin": "",
