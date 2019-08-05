@@ -10,24 +10,30 @@ interface Stat {
 }
 
 // Class CnsStats here
-class CnsStats extends CNShell.CNExtension {
+class CnsStats extends CNShell {
   // Properties here
   private _stats: Map<string, Stat>;
 
   // Constructor here
-  constructor(name: string, shell: CNShell) {
-    super(name, shell);
+  constructor(name: string) {
+    super(name);
 
     this._stats = new Map();
   }
 
   // Methods here
-  start(): void {
+  async start(): Promise<boolean> {
     this.info("Started!");
+
+    return true;
   }
 
-  async stop(): Promise<any> {
+  async stop(): Promise<void> {
     this.info("Stopped!");
+  }
+
+  async healthCheck(): Promise<boolean> {
+    return true;
   }
 
   newStat(name: string) {

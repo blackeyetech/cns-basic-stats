@@ -57,7 +57,7 @@
   },
   "dependencies": {
     "@types/node": "^12.6.8",
-    "cn-shell": "^2.0.1"
+    "cn-shell": "^2.2.0"
   },
   "repository": {
     "type": "git",

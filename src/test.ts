@@ -18,7 +18,7 @@ class App extends CNShell {
 }
 
 let app = new App("App");
-let stats = new CnsStats("STATS", app);
+let stats = new CnsStats("STATS");
 
 const MOVING_AVE = "movingAve";
 
