@@ -36,17 +36,25 @@ class CNBasicStats extends CNShell {
     return true;
   }
 
-  newStat(name: string) {
-    this._stats.set(name, { cnt: 0, ave: 0, max: 0, min: 0 });
+  newStat(name: string): Stat {
+    let stat = { cnt: 0, ave: 0, max: 0, min: 0 };
+    this._stats.set(name, stat);
+
+    return stat;
   }
 
-  addNewVal(name: string, value: number): void {
+  getStat(name: string): Stat {
     let stat = this._stats.get(name);
 
     if (stat === undefined) {
-      this.error(`Stat (${name}) was not found!`);
-      return;
+      stat = this.newStat(name);
     }
+
+    return stat;
+  }
+
+  addNewVal(name: string, value: number): void {
+    let stat = this.getStat(name);
 
     if (stat.cnt === 0) {
       stat.cnt++;
@@ -64,17 +72,6 @@ class CNBasicStats extends CNShell {
     }
     stat.ave = (stat.ave * stat.cnt + value) / (stat.cnt + 1);
     stat.cnt++;
-  }
-
-  getStat(name: string): Stat | null {
-    let stat = this._stats.get(name);
-
-    if (stat === undefined) {
-      this.error(`Stat (${name}) was not found!`);
-      return null;
-    }
-
-    return stat;
   }
 }
 
