@@ -9,8 +9,8 @@ interface Stat {
   ave: number;
 }
 
-// Class CnsStats here
-class CnsStats extends CNShell {
+// Class CNBasicStats here
+class CNBasicStats extends CNShell {
   // Properties here
   private _stats: Map<string, Stat>;
 
@@ -78,4 +78,4 @@ class CnsStats extends CNShell {
   }
 }
 
-export { CnsStats };
+export { CNBasicStats };
