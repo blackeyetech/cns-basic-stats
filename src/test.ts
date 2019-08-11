@@ -1,5 +1,5 @@
 import CNShell from "cn-shell";
-import { CnsStats } from "./main";
+import { CNBasicStats } from "./main";
 
 class App extends CNShell {
   constructor(name: string) {
@@ -18,7 +18,7 @@ class App extends CNShell {
 }
 
 let app = new App("App");
-let stats = new CnsStats("STATS");
+let stats = new CNBasicStats("STATS");
 
 const MOVING_AVE = "movingAve";
 
