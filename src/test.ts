@@ -51,3 +51,9 @@ stats.reset(MOVING_AVE_2);
 app.info("%j", stats.getStat(MOVING_AVE_2));
 
 app.info("%j", stats.getStat(MOVING_AVE_3));
+
+let all = stats.getAllStats();
+
+for (let [key, value] of all) {
+  app.info(`${key}: %j`, value);
+}

@@ -53,6 +53,10 @@ class CNBasicStats extends CNShell {
     return stat;
   }
 
+  getAllStats(): IterableIterator<[string, Stat]> {
+    return this._stats.entries();
+  }
+
   addNewVal(name: string, value: number): void {
     let stat = this.getStat(name);
 
