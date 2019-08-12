@@ -73,6 +73,11 @@ class CNBasicStats extends CNShell {
     stat.ave = (stat.ave * stat.cnt + value) / (stat.cnt + 1);
     stat.cnt++;
   }
+
+  reset(name: string): void {
+    let stat = { cnt: 0, ave: 0, max: 0, min: 0 };
+    this._stats.set(name, stat);
+  }
 }
 
 export { CNBasicStats };

@@ -47,4 +47,7 @@ app.info("%j", stats.getStat(MOVING_AVE_2));
 stats.addNewVal(MOVING_AVE_2, -2);
 app.info("%j", stats.getStat(MOVING_AVE_2));
 
+stats.reset(MOVING_AVE_2);
+app.info("%j", stats.getStat(MOVING_AVE_2));
+
 app.info("%j", stats.getStat(MOVING_AVE_3));
