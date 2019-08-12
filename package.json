@@ -1,5 +1,5 @@
 {
-  "version": "1.3.0",
+  "version": "1.4.0",
   "name": "@cn-shell/basic-stats",
   "description": "A Cloud Native Shell extension for basic stats",
   "main": "./dist/main.js",
