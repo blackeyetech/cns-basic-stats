@@ -3,6 +3,8 @@ import CNShell from "cn-shell";
 
 // Interfaces here
 interface Stat {
+  bucketStart: number;
+  interval: number;
   cnt: number;
   max: number;
   min: number;
@@ -23,42 +25,59 @@ class CNBasicStats extends CNShell {
 
   // Methods here
   async start(): Promise<boolean> {
-    this.info("Started!");
-
     return true;
   }
 
-  async stop(): Promise<void> {
-    this.info("Stopped!");
-  }
+  async stop(): Promise<void> {}
 
   async healthCheck(): Promise<boolean> {
     return true;
   }
 
   newStat(name: string): Stat {
-    let stat = { cnt: 0, ave: 0, max: 0, min: 0 };
+    let stat = {
+      bucketStart: Date.now(),
+      interval: 0,
+      cnt: 0,
+      ave: 0,
+      max: 0,
+      min: 0,
+    };
+
     this._stats.set(name, stat);
 
     return stat;
   }
 
-  getStat(name: string): Stat {
+  getStat(name: string, reset: boolean = true): Stat {
     let stat = this._stats.get(name);
 
     if (stat === undefined) {
       stat = this.newStat(name);
+      return stat;
+    }
+
+    stat.interval = Date.now() - stat.bucketStart;
+
+    if (reset) {
+      this.reset(name);
     }
 
     return stat;
   }
 
-  getAllStats(): IterableIterator<[string, Stat]> {
-    return this._stats.entries();
+  getAllStatNames(): string[] {
+    let all: string[] = [];
+
+    for (let [key] of this._stats.entries()) {
+      all.push(key);
+    }
+
+    return all;
   }
 
-  addNewVal(name: string, value: number): void {
-    let stat = this.getStat(name);
+  newVal(name: string, value: number): void {
+    let stat = this.getStat(name, false);
 
     if (stat.cnt === 0) {
       stat.cnt++;
@@ -79,7 +98,14 @@ class CNBasicStats extends CNShell {
   }
 
   reset(name: string): void {
-    let stat = { cnt: 0, ave: 0, max: 0, min: 0 };
+    let stat = {
+      bucketStart: Date.now(),
+      interval: 0,
+      cnt: 0,
+      ave: 0,
+      max: 0,
+      min: 0,
+    };
     this._stats.set(name, stat);
   }
 }

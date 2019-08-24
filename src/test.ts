@@ -25,35 +25,35 @@ const MOVING_AVE_2 = "movingAve_2";
 const MOVING_AVE_3 = "movingAve_3";
 
 stats.newStat(MOVING_AVE_1);
-stats.addNewVal(MOVING_AVE_1, 4);
-app.info("%j", stats.getStat(MOVING_AVE_1));
-stats.addNewVal(MOVING_AVE_1, 8);
-app.info("%j", stats.getStat(MOVING_AVE_1));
-stats.addNewVal(MOVING_AVE_1, 2);
-app.info("%j", stats.getStat(MOVING_AVE_1));
-stats.addNewVal(MOVING_AVE_1, 16);
-app.info("%j", stats.getStat(MOVING_AVE_1));
-stats.addNewVal(MOVING_AVE_1, -2);
-app.info("%j", stats.getStat(MOVING_AVE_1));
+stats.newVal(MOVING_AVE_1, 4);
+app.info("%j", stats.getStat(MOVING_AVE_1, false));
+stats.newVal(MOVING_AVE_1, 8);
+app.info("%j", stats.getStat(MOVING_AVE_1, false));
+stats.newVal(MOVING_AVE_1, 2);
+app.info("%j", stats.getStat(MOVING_AVE_1, false));
+stats.newVal(MOVING_AVE_1, 16);
+app.info("%j", stats.getStat(MOVING_AVE_1, false));
+stats.newVal(MOVING_AVE_1, -2);
+app.info("%j", stats.getStat(MOVING_AVE_1, false));
 
-stats.addNewVal(MOVING_AVE_2, 4);
-app.info("%j", stats.getStat(MOVING_AVE_2));
-stats.addNewVal(MOVING_AVE_2, 8);
-app.info("%j", stats.getStat(MOVING_AVE_2));
-stats.addNewVal(MOVING_AVE_2, 2);
-app.info("%j", stats.getStat(MOVING_AVE_2));
-stats.addNewVal(MOVING_AVE_2, 16);
-app.info("%j", stats.getStat(MOVING_AVE_2));
-stats.addNewVal(MOVING_AVE_2, -2);
-app.info("%j", stats.getStat(MOVING_AVE_2));
+stats.newVal(MOVING_AVE_2, 4);
+app.info("%j", stats.getStat(MOVING_AVE_2, false));
+stats.newVal(MOVING_AVE_2, 8);
+app.info("%j", stats.getStat(MOVING_AVE_2, false));
+stats.newVal(MOVING_AVE_2, 2);
+app.info("%j", stats.getStat(MOVING_AVE_2, false));
+stats.newVal(MOVING_AVE_2, 16);
+app.info("%j", stats.getStat(MOVING_AVE_2, false));
+stats.newVal(MOVING_AVE_2, -2);
+app.info("%j", stats.getStat(MOVING_AVE_2, false));
 
 stats.reset(MOVING_AVE_2);
-app.info("%j", stats.getStat(MOVING_AVE_2));
+app.info("%j", stats.getStat(MOVING_AVE_2, false));
 
-app.info("%j", stats.getStat(MOVING_AVE_3));
+app.info("%j", stats.getStat(MOVING_AVE_3, false));
 
-let all = stats.getAllStats();
+let all = stats.getAllStatNames();
 
-for (let [key, value] of all) {
-  app.info(`${key}: %j`, value);
+for (let name in all) {
+  app.info(`${all[name]}: %j`, stats.getStat(all[name]));
 }
