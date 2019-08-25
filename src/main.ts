@@ -3,6 +3,7 @@ import CNShell from "cn-shell";
 
 // Interfaces here
 interface Stat {
+  name: string;
   bucketStart: number;
   interval: number;
   cnt: number;
@@ -36,6 +37,7 @@ class CNBasicStats extends CNShell {
 
   newStat(name: string): Stat {
     let stat = {
+      name,
       bucketStart: Date.now(),
       interval: 0,
       cnt: 0,
@@ -99,6 +101,7 @@ class CNBasicStats extends CNShell {
 
   reset(name: string): void {
     let stat = {
+      name,
       bucketStart: Date.now(),
       interval: 0,
       cnt: 0,
